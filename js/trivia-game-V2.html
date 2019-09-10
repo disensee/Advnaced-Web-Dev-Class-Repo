@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game Verson 2</title>
+	<script type="text/javascript">
+		
+		var questions = [
+			{question: "What year did World War II end?", answer:1945},
+			{question: "What year was Woodstock?", answer:1969},
+			{question: "What year did the Berlin Wall fall?", answer:1989}
+		];
+
+		var score = 0;
+
+		/*
+		Part 1
+		Loop through the 'questions' array and prompt the user to answer each question (use the prompt() function).
+		Use the 'score' variable to tally the number of questions that were answered correctly.
+		When the loop completes, use the alert() function to display the score.
+		*/
+		for(x = 0; x < questions.length; x++){
+			var answer = prompt(questions[x].question);
+			if(answer == questions[x].answer){
+				score++;
+			}
+		}
+		alert("Your final score is: " + score + "/3");
+
+		/*
+		Part 2
+		Do you remember 'bracket notation'?
+		Use bracket notation to alert the firstName of the 'person' object below.
+		*/
+		var person = {firstName: "Jane", lastName: "Doe", age:25};
+		alert(person["firstName"]);
+
+	</script>
+</head>
+<body>
+	<h1>Trivia Game Verson 2</h1>
+</body>
+</html>
