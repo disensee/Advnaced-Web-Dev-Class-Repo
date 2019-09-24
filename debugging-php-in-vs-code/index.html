@@ -1,0 +1,57 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Setting Up Debugging in PHP (w VS Code)</h1>
+        <p>
+            I used <a href="https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug" target="_blank">this</a> page as my guide.
+        </p>
+        <h3>Setting Up XDebug</h3>
+        <ul>
+            <li>Open <a href="php-config.php">this</a> page in our browser</li>
+            <li>Copy the entire contents of the HTML in the page.</li>
+            <li>
+                Go to <a href="https://xdebug.org/wizard.php">this</a> page and paste the clipboard contents into the textarea.
+                Then press the 'analyze' button.
+            </li>
+            <li>
+                Follow the instructions output.
+                <br>Note that the instructions did not tell me to set <b>xdebug.remote_autostart = 1</b>, I believe it must be set.
+            </li>
+        </ul>
+
+        <h3>Install the PHP Debug Plugin into VS Code</h3>
+        <ul>
+            <li>In VS Code, press <b>F1</b> and type <b>Extensions: Choose Extensions</b></li>
+            <li>The Extensions side bar will appear on the left.</li>
+            <li>In the search box, enter <b>PHP Debug</b>.</li>
+            <li>You will be prompted to restart VS code.</li>
+            <li>When VS Code restarts, click on File &gt; Preferences &gt; Settings</li>
+            <li>The window on the left will show the default settings, the one on the right will show the user settings</li>
+            <li>
+                Add this entry (between the curly braces) to the user settings (on the right), but you'll have to update the path to your own php.exe file!
+                (use double back slashes in the path)
+                <pre>
+"php.validate.executablePath": "C:\\Users\\kadern\\Desktop\\xampp\\php\\php.exe"                    
+                </pre>
+                Note, I got a warning saying that it could not be validated!
+            </li>
+        </ul>
+
+        <h3>Using the Debugger</h3>
+        <ul>
+            <li>Open the page you want to debug in the browser</li>
+            <li>Open the page in VS Code</li>
+            <li>Press the Debug icon on the left. This will open the Debug window on the left.</li>
+            <li>Set a break point by clicking to the left of a line number.</li>
+            <li>
+                Press the debug button (green arrow) on the top left
+                (you'll want to use the 'Listen for XDebug' run configuration, but that should be selected by default).
+
+            </li>
+            <li>Go back to the browser and refresh the page, it should stop executing at your break point</li>
+            <li>Go back to VS code and use the debugger to step through it.</li>
+        </ul>
+    </body>
+</html>

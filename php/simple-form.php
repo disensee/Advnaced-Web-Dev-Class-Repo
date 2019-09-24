@@ -13,9 +13,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];
   
-  if(isset($_POST['pizza_toppings'])){
-    $pizza_toppings = $_POST['pizza_toppings'];
-  }
+  //if(isset($_POST['pizza_toppings'])){
+  //  $pizza_toppings = $_POST['pizza_toppings'];
+  //}
+
+  //SHORTCUT FOR ABOVE IF STATEMENT
+    $pizza_toppings = $_POST['pizza_toppings'] ?? "";
+
   //STEP 2 - Validate the user input
   //If we find a problem with something
   //we'lll add it to the validation_errors array
@@ -58,26 +62,30 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       <br> 
       <input type="text" name="first_name"/>
       <?php 
-      if(isset($validation_errors['first_name'])){
-        echo($validation_errors['first_name']);
-      }
+      //if(isset($validation_errors['first_name'])){
+      //  echo($validation_errors['first_name']);
+      //}
+      echo($validation_errors['first_name'] ?? "");
       ?>
       <br>
       LAST NAME:
       <br>
       <input type="text" name="last_name"/>
       <?php 
-      if(isset($validation_errors['last_name'])){
-        echo($validation_errors['last_name']);
-      }
+      //if(isset($validation_errors['last_name'])){
+      //  echo($validation_errors['last_name']);
+      //}
+      echo($validation_errors['last_name'] ?? "");
       ?>
       <br>
       <br>
        WHAT DO YOU LIKE ON YOUR PIZZA?
        <?php 
-      if(isset($validation_errors['pizza_toppings'])){
-        echo($validation_errors['pizza_toppings']);
-      }
+      //if(isset($validation_errors['pizza_toppings'])){
+      //  echo($validation_errors['pizza_toppings']);
+      //}
+
+      echo($validation_errors['pizza_toppings'] ?? "");
       ?>
       <br>
       <input type="checkbox" name="pizza_toppings[]" value="sausage" /> Sausage
