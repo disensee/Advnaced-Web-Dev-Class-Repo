@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dynamic Select Box in JavaScript</title>
+	<script type="text/javascript">
+	
+	window.addEventListener("load", function(){
+
+		
+		var meals = ["Beef", "Chicken", "Fish"];
+
+
+		function populateMeals(options, selectedOption){
+			/*
+			Implement the code for this function.
+			It should use the options parameter to populate the select element (in the body) with option elements.
+			It should also set the selected option based on the second parameter.
+			*/
+			var html = "";
+		
+			for(var x = 0; x < options.length; x++){
+				html += "<option>" + options[x] + "</option>";
+			}
+			document.getElementById("selMeal").innerHTML = html;
+			
+		}
+
+		populateMeals(meals, "Fish");
+
+	});	
+
+	</script>
+</head>
+<body>
+
+Choose your meal:
+<select id="selMeal">
+	
+</select>
+
+</body>
+</html>
