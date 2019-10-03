@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS Selectors</title>
+	<style type="text/css">
+		
+
+	ul li{
+		margin: 15px;
+		border: 1px solid black;
+		border-radius:5px;
+		padding:10px;
+		list-style: none;
+	}
+
+	#cars.promos ul li{
+		background-color: green;
+	}
+
+	#trucks .promos li{
+		background-color: yellow;
+	}
+
+	</style>
+</head>
+<body>
+	<h3>Cars</h3>
+	<div id="cars" class="promos">
+		<ul>
+			<li>Pontiac</li>
+			<li>Chevy</li>
+		</ul>
+	</div>
+	
+	<h3>Trucks</h3>
+	<div id="trucks">
+		<ul class="promos">
+			<li>Pontiac</li>
+			<li>Chevy</li>
+		</ul>
+	</div>
+
+</body>
+</html>
