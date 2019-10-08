@@ -3,6 +3,7 @@
 $first_name = "";
 $last_name = "";
 $pizza_toppings = array();
+$dessert_choice = "";
 
 $validation_errors = array();
 
@@ -19,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
   //SHORTCUT FOR ABOVE IF STATEMENT
     $pizza_toppings = $_POST['pizza_toppings'] ?? $pizza_toppings;
+    $dessert_choice = $_POST['dessert_choice'];
 
   //STEP 2 - Validate the user input
   //If we find a problem with something
@@ -36,6 +38,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $validation_errors['pizza_toppings'] = wrap_err_msg("Please choose at least one topping");
   }
 
+  if($dessert_choice == 0){
+    $validation_errors['dessert_choice'] = wrap_err_msg("Please choose a dessert");
+  }
+
   //STEP 3 - If there are no validation error messages then we can process the data
   if(empty($validation_errors)){
     echo("Thanks, we are processing your data!");
@@ -45,17 +51,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 function wrap_err_msg($msg){
   return "<span class=\"validation\">$msg</span>";
-}
-
-function isChecked($chkName, $value){
-  if(!empty($_POST[$chkName])){
-    foreach($_POST[$chkName] as $chkValue){
-      if($chkValue == $value){
-        return true;
-      }
-    }
-  }
-  return false;
 }
 
 ?>
@@ -102,44 +97,36 @@ function isChecked($chkName, $value){
       //if(isset($validation_errors['pizza_toppings'])){
       //  echo($validation_errors['pizza_toppings']);
       //}
-      
       echo($validation_errors['pizza_toppings'] ?? "");
       ?>
       <br>
       <input type="checkbox" name="pizza_toppings[]" value="sausage" 
       <?php
-      //MY WAY
-      if(isChecked('pizza_toppings', 'sausage')){
-        echo("checked");
-      }
-      
-      //NIALLS WAY
-      //echo(in_array("sausage", $pizza_toppings) ? "checked" : "");
+      echo(in_array("sausage", $pizza_toppings) ? "checked" : "");
       ?>
       /> Sausage
       <br>
       <input type="checkbox" name="pizza_toppings[]" value="pepperoni" 
       <?php
-      //MY WAY
-      if(isChecked('pizza_toppings', 'pepperoni')){
-        echo("checked");
-      }
-      
-      //NIALLS WAY
-      //echo(in_array("pepperoni", $pizza_toppings) ? "checked" : "");
+      echo(in_array("pepperoni", $pizza_toppings) ? "checked" : "");
       ?>/> Pepperoni
       <br>
       <input type="checkbox" name="pizza_toppings[]" value="mushrooms" 
       <?php
-      //MY WAY
-      if(isChecked('pizza_toppings', 'mushrooms')){
-        echo("checked");
-      }
-      
-      //NIALLS WAY
-      //echo(in_array("mushrooms", $pizza_toppings) ? "checked" : "");
+      echo(in_array("mushrooms", $pizza_toppings) ? "checked" : "");
       ?>/> Mushrooms
       <br>
+      <br>
+      <label>Choose your dessert:</label>
+      <br>
+      <select name="dessert_choice" id="">
+        <option value="0">Choose One...</option>
+        <option value="1" <?php echo($dessert_choice == 1 ? "selected" : ""); ?>>Ice Cream</option>
+        <option value="2" <?php echo($dessert_choice == 2 ? "selected" : ""); ?>>Cake</option>
+      </select>
+      <?php
+      echo($validation_errors['dessert_choice'] ?? "");
+      ?>
       <br>
       <input type="submit" name="btn_submit" value="Submit" />
   </form>
