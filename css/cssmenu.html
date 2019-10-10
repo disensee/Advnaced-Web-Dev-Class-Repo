@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.addEventListener("load", function(){
+        var menu = document.getElementById("menu");
+        var menuWidth = window.getComputedStyle(menu).width;
+        //alert(menuWidth);
+
+        document.getElementById("menu-button").addEventListener("click", function(){
+            if(menu.style.width == menuWidth){
+                menu.style.width = 0;
+            }else{
+                menu.style.width = menuWidth;
+            }
+        });
+    });
+    </script>
+    <style>
+    #menu-button{
+        height: 44px;
+        width: 44px;
+        line-height: 44px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #menu{
+        background-color: blue;
+        position: absolute;
+        top: 44px;
+        bottom: 0px;
+        width: 200px;
+        overflow: hidden;
+        transition: width 0.1s;
+    }
+    </style>
+</head>
+<body>
+    <div id="menu-button">&#9776;</div>
+    <div id="menu">
+        <nav>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+        </nav>
+    </div>
+</body>
+</html>

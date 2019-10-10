@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dynamic List in PHP</title>
+	<script type="text/javascript">
+	
+	window.addEventListener("load", function(){
+
+		var data = [
+			{name:"Sales", headquarters:"Madison", employees:["Bob", "Betty", "Sally"]},
+			{name:"IT", headquarters:"La Crosse", employees:["Ted", "Jean", "Larry"]},
+			{name:"Accounting", headquarters:"Winona", employees:["Morris", "Buster", "Grace"]}
+		];
+
+		var list = createDeparmentList(data);
+		var container = document.querySelector("#list-container");
+		container.appendChild(list);
+
+		function createDeparmentList(departments){
+			/*
+			Problem 1
+			Use the DOM API to create an HTML FRAGMENT
+			The fragment should  be an OL element (ordered list) that displays the name and headquarters of each department.
+			for example:
+
+				1. Sales - Madison
+				2. IT - La Crosse
+				3. Accounting - Winona
+
+			The function should return the OL element;
+			*/
+			var ol = document.createElement('ol');
+			for(var x = 0; x < departments.length; x++){
+				var li = document.createElement('li');
+				li.appendChild(document.createTextNode(departments[x].name + " - " + departments[x].headquarters));
+				ol.appendChild(li);
+			}
+
+			var employeeOl = document.createElement('ol');
+			var employeeLi = document.createElement('li');
+			var employeesArray = departments.employees;
+			for(var i = 0; i < employees.length; i++){
+				emloyeeli.appendChild(document.createTextNode(employees[i]));
+				employeeOl.appendChild(employeeLi);
+				li.appendChild(employeeOl);
+			}
+			
+			return ol;
+			
+		}
+
+
+		/*
+		Problem 2
+		Update the createDepartmentList() function so that it not only lists each department,
+		but also the employees in each department. Make the list of employees a nested list.
+		You may add helper functions if you wish. The final list should look something like this:
+
+				1. Sales - Madison
+					1. Bob
+					2. Betty
+					3. Sally
+				2. IT - La Crosse
+					1. Ted
+					2. Jean
+					3. Larry
+				3. Accounting - Winona
+					1. Morris
+					2. Buster
+					3. Grace
+		*/
+
+	});
+
+	</script>
+</head>
+<body>
+	<div id="list-container"></div>
+</body>
+</html>
