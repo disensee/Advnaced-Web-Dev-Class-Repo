@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#panels > div.panel{
+			background-color: pink;
+			padding: 20px;
+			display: none;
+		}
+
+		#panels input{
+			display: none;
+		}
+
+		#panels label {
+			display: inline-block;
+			height: 30px;
+			line-height: 30px;
+			padding: 0px 12px;
+		}
+
+		#panels input[id="tab1"]:checked ~ #tabs label[for="tab1"],
+		#panels input[id="tab2"]:checked ~ #tabs label[for="tab2"],
+		#panels input[id="tab3"]:checked ~ #tabs label[for="tab3"]
+		{
+			background-color: pink;
+			color: white;
+		}
+
+		#panels input[id="tab1"]:checked ~ div[id="panel1"],
+		#panels input[id="tab2"]:checked ~ div[id="panel2"],
+		#panels input[id="tab3"]:checked ~ div[id="panel3"]
+		{
+			display:block;
+		}
+	</style>
+</head>
+<body>
+	<h1>Tabs</h1>
+	<p>
+		I got the code for this from: https://www.lynda.com/CSS-tutorials/Interactive-tab-panels/536428/669124-4.html?autoplay=true
+	</p>
+
+	<div id="panels">
+		
+		<input id="tab1" type="radio"  checked name="panel_select">
+		<input id="tab2" type="radio" name="panel_select">
+		<input id="tab3" type="radio" name="panel_select">
+		
+		<div id="tabs">
+			<!--Note that by simply setting the 'for', when you press on a label tag, it will select the appropriate radio-->
+			<label for="tab1">Tab 1</label>
+			<label for="tab2">Tab 2</label>
+			<label for="tab3">Tab 3</label>
+		</div>
+		
+		<div class="panel" id="panel1">
+			<h3>PANEL 1</h3>
+		</div>
+		<div class="panel"  id="panel2">
+			<h3>PANEL 2</h3>
+		</div>
+		<div class="panel" id="panel3">
+			<h3>PANEL 3</h3>
+		</div>
+
+	</div>
+</body>
+</html>
