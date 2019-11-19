@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- The following script tag 'imports' the code for the TinyMCE editor  -->
+  <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>
+window.addEventListener("load", function(){
+
+	// Make sure to check out the TinyMCE website: https://www.tiny.cloud/
+
+	var imageFolderPath = "images/";
+	var cssPath = "test.css"; // You can use your website's style sheet to style the content in the editor
+	var popup;
+  	
+  	
+  	// Setup TinyMCE
+  	tinymce.init({ 
+  		selector:'textarea',
+  		height: 200,
+	  	menubar: false,
+	  	plugins: [
+		    'advlist autolink lists link image charmap print preview anchor textcolor',
+		    'searchreplace visualblocks code fullscreen',
+		    'insertdatetime media table contextmenu paste code help wordcount'
+	  	],
+	  	toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | code | help',
+	  	content_css: [
+	    	//'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+	    	cssPath
+	    ] 
+  	});
+	
+
+	
+	// Set up the popup window
+  	document.getElementById("btnInsert").addEventListener("click", function(){
+  		createWindow(400,300);
+  	});
+
+  	//Make a pop-up window function:
+  	function createWindow(width, height) {
+
+		// Add some pixels to the width and height:
+		width = width + 10;
+		height = height + 10;
+
+		// If the window is already open,
+		// resize it to the new dimensions:
+		if (window.popup) {
+			window.popup.resizeTo(width, height);
+		}
+
+		// Set the window properties:
+		var specs = "location=no,scrollbars=no,menubar=no,toolbar=no,resizable=yes,left=0,top=0,width=" + width + ",height=" + height;
+
+		// Set the URL:
+		var url = "image-list.html"; // this will be changed to a .php file
+
+		// Create the pop-up window:
+		popup = window.open(url, "ImageWindow", specs);
+		popup.focus();
+
+		popup.addEventListener("click", function(evt){
+
+			if(evt.target.classList.contains("insertImg")){
+
+				var imgName = evt.target.getAttribute("imgName");
+				var imgDesc = evt.target.getAttribute("imgDesc");
+				insertImg(imgName, imgDesc);
+				popup.close();
+			}
+
+		});
+
+	}
+
+	function insertImg(imgName, imgDesc){
+		var imgHtml = `<img src="${imageFolderPath}${imgName}" alt="${imgDesc}" />`;
+		alert(imgHtml);
+		tinymce.execCommand('mceInsertContent', false, imgHtml);
+	}
+
+});
+  </script>
+</head>
+<body>
+	<h3>TinyMCE (and inserting images into it)</h3>
+	<b>Some notes:</b>
+	<ol>
+		<li><b>Make sure you load this page through your web server (localhost), it won't work if you just launch it from the file system.</b></li>
+		<li>
+			TinyMCE is a <b>rich text editor</b>, which means you can turn a plain old text box into a mini (and crude) version of MSWord.
+			Here's the link to <a href="https://www.tiny.cloud/">TinyMCE</a>.
+		</li>
+		<li><a href="https://www.tiny.cloud/docs/advanced/editor-control-identifiers/#toolbarcontrols" target="_blank">Here's a link to configuring the editor</a></li>
+  		<li>
+  			Chapter 11 of your book has information about creating a pop up window in a web page (the pop up window shows another page in it. You can use JavaScript code to hook up event listeners in the popup window.
+  			The approach that the book takes is a little 'old school'. Nowadays, you would normally not open a new browser window, instead you'd show the pop up in the same browser window that displays the original page.
+  		</li>
+  		<li>What is NS_ERROR_FAILURE? It happens (sometimes) in FF when you try to insert a second image.</li>
+  	</ol>
+  	<textarea>This is the content of your blog post....</textarea>
+  	<br>
+  	<input type="button" id="btnInsert" value="Insert" />
+</body>
+</html>
