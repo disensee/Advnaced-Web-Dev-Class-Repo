@@ -5,6 +5,8 @@ if(empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == "off"){
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: ' . $redirect);
     exit();
+}else{
+    echo("YOU ARE USING HTTPS!!!");
 }
 
 ?>
